@@ -19,6 +19,7 @@
       -u, --use <plugin>             use transform plugin
       -v, --verbose                  show as much logs as possible
       -w, --watch                    watch for changes and rebuild
+      -R, --global-require           Define window.require()
       -s, --standalone <standalone>  outputs standalone javascript umd <standalone>
       -S, --stdout                   outputs build to stdout
 
@@ -43,6 +44,12 @@ $ duo < in.css > out.css
 # build using a plugin
 $ npm install duo-whitespace
 $ duo --use duo-whitespace in.styl > out.css
+
+# use require in a browser
+$ duo --global-require in.js
+# ... then open in browser and try running these in console:
+#   require('in.js')
+#   require.lookup (shows available require paths)
 ```
 
 ## Commands

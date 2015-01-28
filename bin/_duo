@@ -64,6 +64,7 @@ var program = new Command('duo')
   .option('-u, --use <plugin>', 'use transform plugin(s)', collect, [])
   .option('-v, --verbose', 'show as much logs as possible', false)
   .option('-w, --watch', 'watch for changes and rebuild', false)
+  .option('-R, --global-require', 'Define window.require()')
   .option('-s, --standalone <standalone>', 'outputs standalone javascript umd <standalone>', '')
   .option('-S, --stdout', 'outputs build to stdout', false)
   .parse(process.argv);
@@ -297,6 +298,9 @@ function create(entry) {
     .development(!! program.development)
     .copy(program.copy)
     .cache(program.cache);
+
+  // expose require() on window/global
+  duo.global_require(program.globalRequire);
 
   // standalone
   var name = program.standalone;
